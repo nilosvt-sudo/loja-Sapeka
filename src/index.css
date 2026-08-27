@@ -1,1 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --color-paper: #f4f0e4;
+  --color-cream: #fdfaf1;
+  --color-ink: #22302a;
+  --color-pine: #0f3d2e;
+  --color-pine-deep: #09251c;
+  --color-moss: #37604c;
+  --color-gold: #e8a93b;
+  --color-gold-soft: #f3cd85;
+  --color-coral: #e4572e;
+  --color-sage: #d9ddca;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Instrument Sans", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-pine-deep);
+}
+
+/* ---------- grain overlay ---------- */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- dotted / striped backdrops ---------- */
+.dot-grid {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--color-pine) 16%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+.pinstripe {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--color-pine) 6%, transparent) 0 1px,
+    transparent 1px 14px
+  );
+}
+.pinstripe-gold {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--color-gold) 14%, transparent) 0 1px,
+    transparent 1px 12px
+  );
+}
+
+/* ---------- reveal on scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- marquee / ticker ---------- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--dur, 32s) linear infinite;
+}
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- ken burns breathing ---------- */
+.kenburns {
+  animation: kenburns 16s ease-in-out infinite alternate;
+}
+@keyframes kenburns {
+  from {
+    transform: scale(1) translate(0, 0);
+  }
+  to {
+    transform: scale(1.09) translate(-1.5%, 1.5%);
+  }
+}
+
+/* ---------- rotating stamp ---------- */
+.spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- floating polaroids ---------- */
+.float-soft {
+  animation: float-soft 6s ease-in-out infinite alternate;
+}
+@keyframes float-soft {
+  from {
+    transform: translateY(-6px) rotate(var(--tilt, -3deg));
+  }
+  to {
+    transform: translateY(8px) rotate(var(--tilt, -3deg));
+  }
+}
+
+/* ---------- product card entrance ---------- */
+.card-in {
+  animation: card-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- bag counter pop ---------- */
+.pop {
+  animation: pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.45);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---------- wobble star ---------- */
+.twinkle {
+  animation: twinkle 3.2s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.72) rotate(24deg);
+    opacity: 0.65;
+  }
+}
+
+/* ---------- dashed ticket divider ---------- */
+.perforated {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-ink) 30%, transparent) 55%,
+    transparent 55%
+  );
+  background-size: 1px 10px;
+  background-repeat: repeat-y;
+  width: 1px;
+}
+
+/* ---------- outline display text ---------- */
+.text-outline {
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--color-pine) 22%, transparent);
+  color: transparent;
+}
+.text-outline-gold {
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--color-gold) 55%, transparent);
+  color: transparent;
+}
+
+/* ---------- underline swash ---------- */
+.swash {
+  background-image: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--color-gold) 70%, transparent) 0 0.28em,
+    transparent 0.28em
+  );
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track,
+  .kenburns,
+  .spin-slow,
+  .float-soft,
+  .card-in,
+  .pop,
+  .twinkle {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
