@@ -1,16 +1,80 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Sapeka Multimarcas — Moda &amp; Casa desde 1990</title>
+    <meta name="title" content="Sapeka Multimarcas — Moda &amp; Casa desde 1990" />
     <meta
       name="description"
-      content="Sapeka Multimarcas — desde 1990. Moda feminina, masculina e infantil, calçados e cama, mesa & banho. Enviamos para todo o Brasil. Peça pelo Instagram @sapekaloja."
+      content="Loja Sapeka Multimarcas (desde 1990). Moda feminina, masculina, infantil, calçados e cama, mesa &amp; banho. Atendimento personalizado no WhatsApp (32) 9964-0316 e envio rápido para os 27 estados do Brasil."
     />
+    <meta name="keywords" content="Sapeka Multimarcas, loja Sapeka, moda feminina, moda masculina, moda infantil, calçados, cama mesa banho, enxoval, roupas Bicas MG, comprar roupas online" />
+    <meta name="author" content="Sapeka Multimarcas" />
+    <meta name="theme-color" content="#7A0813" />
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Sapeka Multimarcas" />
+    <meta property="og:title" content="Sapeka Multimarcas — Moda &amp; Casa desde 1990" />
+    <meta
+      property="og:description"
+      content="Moda feminina, masculina, infantil, calçados e enxovais. 35 anos de tradição com entrega segura para todo o Brasil. Atendimento via WhatsApp (32) 9964-0316."
+    />
+    <meta property="og:image" content="/logo-sapeka.jpg" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sapeka Multimarcas — Moda &amp; Casa desde 1990" />
+    <meta
+      name="twitter:description"
+      content="Moda completa para a família e enxoval da casa. Peça pelo WhatsApp (32) 9964-0316 com envio para todo o Brasil."
+    />
+    <meta name="twitter:image" content="/logo-sapeka.jpg" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="/logo-sapeka.jpg" />
-    <title>Sapeka — Moda &amp; Multimarcas desde 1990</title>
+    <link rel="apple-touch-icon" href="/logo-sapeka.jpg" />
+
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ClothingStore",
+        "name": "Sapeka Multimarcas",
+        "image": "/logo-sapeka.jpg",
+        "description": "Loja multimarcas de varejo desde 1990. Moda feminina, masculina, infantil, calçados e cama, mesa & banho com entrega em todo o Brasil.",
+        "telephone": "+55-32-9964-0316",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bicas",
+          "addressRegion": "MG",
+          "postalCode": "36600-000",
+          "addressCountry": "BR"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/sapekaloja/"
+        ]
+      }
+    </script>
   </head>
-  <body>
+  <body class="bg-paper text-ink selection:bg-pine selection:text-gold antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

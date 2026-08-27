@@ -376,7 +376,7 @@ export function Header({
             <a
               href={INSTAGRAM_URL}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hidden items-center gap-2 border border-ink/20 px-3.5 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-ink transition-all hover:border-pine hover:bg-pine hover:text-gold sm:flex"
             >
               <IconInstagram className="h-4 w-4" />
@@ -527,7 +527,7 @@ export function Header({
                       "Olá, Loja Sapeka! Gostaria de falar com o atendimento.",
                     )}`}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 rounded-lg bg-[#25D366] py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-sm hover:bg-[#20bd5a]"
                   >
                     <IconWhatsApp className="h-4 w-4" />
@@ -536,7 +536,7 @@ export function Header({
                   <a
                     href={INSTAGRAM_URL}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 rounded-lg border border-ink/20 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-ink hover:bg-cream"
                   >
                     <IconInstagram className="h-4 w-4" />
@@ -908,7 +908,7 @@ export function CartDrawer({
                   : undefined,
               )}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="mt-4 flex items-center justify-center gap-2.5 rounded-lg bg-[#25D366] py-3.5 font-mono text-[12px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_4px_16px_rgba(37,211,102,0.35)] transition-all hover:bg-[#20bd5a] hover:shadow-[0_6px_22px_rgba(37,211,102,0.5)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99]"
             >
               <IconWhatsApp className="h-5 w-5" />
@@ -919,7 +919,7 @@ export function CartDrawer({
             <a
               href={INSTAGRAM_URL}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="mt-2.5 flex items-center justify-center gap-2 rounded-lg border border-ink/25 bg-transparent py-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-ink transition-colors hover:border-coral hover:bg-coral/5 hover:text-coral"
             >
               <IconInstagram className="h-4 w-4" />

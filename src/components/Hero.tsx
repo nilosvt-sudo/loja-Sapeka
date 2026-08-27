@@ -98,7 +98,7 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
                 <a
                   href={INSTAGRAM_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2.5 border-b-2 border-ink/30 pb-1 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:border-coral hover:text-coral"
                 >
                   <IconInstagram className="h-4.5 w-4.5" />

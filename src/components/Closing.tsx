@@ -43,7 +43,7 @@ export function InstagramCTA() {
                 <a
                   href={INSTAGRAM_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="font-medium italic text-gold transition-colors hover:text-gold-soft"
                 >
                   {INSTAGRAM_HANDLE}
@@ -62,7 +62,7 @@ export function InstagramCTA() {
                 <a
                   href={INSTAGRAM_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="group flex items-center gap-3 bg-gold px-6 py-3.5 font-mono text-[12px] font-bold uppercase tracking-[0.16em] text-pine-deep shadow-[6px_6px_0_0_rgba(228,87,46,1)] transition-all hover:-translate-y-0.5 hover:shadow-[8px_8px_0_0_rgba(228,87,46,1)] active:translate-y-0 active:shadow-[4px_4px_0_0_rgba(228,87,46,1)]"
                 >
                   <IconInstagram className="h-5 w-5 transition-transform group-hover:rotate-12" />
@@ -71,7 +71,7 @@ export function InstagramCTA() {
                 <a
                   href={INSTAGRAM_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2.5 border-b-2 border-cream/30 pb-1 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-cream/80 transition-colors hover:border-gold hover:text-gold"
                 >
                   Enviar direct <IconArrow className="h-4 w-4" />
@@ -88,7 +88,7 @@ export function InstagramCTA() {
                   key={i}
                   href={INSTAGRAM_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className={`group relative overflow-hidden border-2 border-cream/15 ${
                     i === 0
                       ? "col-span-2 row-span-2 aspect-square"
@@ -190,7 +190,7 @@ export function Footer() {
                     "Olá, Loja Sapeka! Gostaria de falar com o atendimento.",
                   )}`}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="flex items-start gap-3 text-[15px] font-medium text-emerald-400 transition-colors hover:text-emerald-300"
                 >
                   <IconWhatsApp className="mt-0.5 h-4.5 w-4.5 shrink-0 text-emerald-400" />
@@ -201,7 +201,7 @@ export function Footer() {
                 <a
                   href={INSTAGRAM_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="flex items-start gap-3 text-[15px] text-cream/75 transition-colors hover:text-gold"
                 >
                   <IconInstagram className="mt-0.5 h-4.5 w-4.5 shrink-0 text-gold" />
