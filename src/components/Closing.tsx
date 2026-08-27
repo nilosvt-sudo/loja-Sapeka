@@ -3,6 +3,8 @@ import {
   FEED_TILES,
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_NUMBER,
 } from "../data";
 import {
   Barcode,
@@ -11,6 +13,7 @@ import {
   IconHeart,
   IconInstagram,
   IconPin,
+  IconWhatsApp,
   Reveal,
 } from "../lib";
 
@@ -127,10 +130,22 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-12">
           {/* wordmark */}
           <div className="lg:col-span-5">
-            <p className="font-display text-[clamp(3rem,7vw,5rem)] font-black italic leading-none tracking-tight text-cream">
-              Sapeka<span className="text-gold">.</span>
-            </p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream/60">
+            <div className="flex items-center gap-3.5">
+              <img
+                src="/logo-sapeka.jpg"
+                alt="Logo Sapeka"
+                className="h-14 w-14 rounded-xl border border-cream/20 object-cover shadow-md"
+              />
+              <div>
+                <p className="font-display text-[clamp(2.5rem,5vw,3.8rem)] font-black italic leading-none tracking-tight text-cream">
+                  Sapeka<span className="text-gold">.</span>
+                </p>
+                <span className="mt-1 block font-mono text-[9px] font-medium uppercase tracking-[0.28em] text-gold-soft">
+                  Multimarcas · Desde 1990
+                </span>
+              </div>
+            </div>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream/70">
               Loja multimarcas de varejo, no balcão desde 1990. Moda para a
               família inteira e casa arrumada — agora com entrega em todo o
               Brasil.
@@ -168,7 +183,20 @@ export function Footer() {
             <h3 className="font-mono text-[11px] font-bold uppercase tracking-[0.26em] text-gold">
               Atendimento
             </h3>
-            <ul className="mt-5 space-y-4">
+            <ul className="mt-5 space-y-3.5">
+              <li>
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                    "Olá, Loja Sapeka! Gostaria de falar com o atendimento.",
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-start gap-3 text-[15px] font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+                >
+                  <IconWhatsApp className="mt-0.5 h-4.5 w-4.5 shrink-0 text-emerald-400" />
+                  WhatsApp: {WHATSAPP_DISPLAY}
+                </a>
+              </li>
               <li>
                 <a
                   href={INSTAGRAM_URL}
@@ -177,7 +205,7 @@ export function Footer() {
                   className="flex items-start gap-3 text-[15px] text-cream/75 transition-colors hover:text-gold"
                 >
                   <IconInstagram className="mt-0.5 h-4.5 w-4.5 shrink-0 text-gold" />
-                  {INSTAGRAM_HANDLE} — pedidos, dúvidas e novidades
+                  {INSTAGRAM_HANDLE} — novidades e provador
                 </a>
               </li>
               <li className="flex items-start gap-3 text-[15px] text-cream/75">
@@ -199,12 +227,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-cream/15 pt-7 sm:flex-row">
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cream/40">
-            © {new Date().getFullYear()} Sapeka Multimarcas · Varejo desde 1990
+        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-cream/15 pt-7 sm:flex-row text-center sm:text-left">
+          <p className="font-mono text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.12em] sm:tracking-[0.18em] text-cream/50 whitespace-nowrap">
+            © {new Date().getFullYear()} Sapeka Multimarcas · Desde 1990
           </p>
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cream/40">
-            Feito no Brasil, enviado para o Brasil 🇧🇷
+          <p className="font-mono text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.12em] sm:tracking-[0.18em] text-cream/50 whitespace-nowrap">
+            Feito no Brasil, enviado para todo o Brasil 🇧🇷
           </p>
         </div>
       </div>

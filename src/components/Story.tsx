@@ -2,25 +2,26 @@ import type { CSSProperties } from "react";
 import { BRANDS_ROW_A, BRANDS_ROW_B, IMG, MILESTONES, STATS } from "../data";
 import { CircularStamp, Reveal, useCountUp, useInView } from "../lib";
 
-function Stat({
+function StatItem({
   value,
   suffix,
   label,
-  start,
+  inView,
 }: {
   value: number;
   suffix: string;
   label: string;
-  start: boolean;
+  inView: boolean;
 }) {
-  const n = useCountUp(value, start);
+  const count = useCountUp(value, inView, 1200);
+
   return (
-    <div className="border-l-2 border-gold/70 pl-4">
-      <p className="font-display text-4xl font-black leading-none text-cream sm:text-5xl">
-        {n.toLocaleString("pt-BR")}
-        <span className="text-gold">{suffix}</span>
+    <div className="rounded-xl border-2 border-gold/40 bg-cream p-4 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+      <p className="font-display text-3xl font-black leading-none text-pine sm:text-4xl">
+        {count.toLocaleString("pt-BR")}
+        <span className="text-coral">{suffix}</span>
       </p>
-      <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] text-cream/55">
+      <p className="mt-2 font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-ink/75">
         {label}
       </p>
     </div>
@@ -65,86 +66,123 @@ function BrandRow({
 }
 
 export function Story() {
-  const { ref, inView } = useInView<HTMLDivElement>(0.25);
+  const { ref, inView } = useInView<HTMLDivElement>(0.2);
 
   return (
-    <section id="historia" className="relative scroll-mt-24 overflow-hidden bg-pine text-cream">
-      <div className="pinstripe-gold pointer-events-none absolute inset-0" aria-hidden="true" />
+    <section id="historia" className="relative scroll-mt-24 bg-pine text-cream">
+      <div className="pinstripe-gold pointer-events-none absolute inset-0 opacity-80" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
-        <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
-          {/* sticky column */}
-          <div className="lg:col-span-5">
-            <div className="lg:sticky lg:top-28">
+        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-14">
+          {/* Coluna da Esquerda: Resumo Institucional, Foto de Arquivo e Badges (STICKY) */}
+          <div className="flex flex-col gap-7 lg:col-span-5 lg:sticky lg:top-24 lg:self-start">
+            <div>
               <Reveal>
-                <p className="font-mono text-[11px] font-medium uppercase tracking-[0.28em] text-gold">
-                  ✳ Desde 1990 · Nossa história
-                </p>
+                <div className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-pine-deep/80 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-gold shadow-sm">
+                  <span>✳</span> Desde 1990 · Nossa História
+                </div>
               </Reveal>
+
               <Reveal delay={80}>
-                <h2 className="mt-4 font-display text-[clamp(2.4rem,5.5vw,4rem)] font-black leading-[0.95] tracking-tight">
+                <h2 className="mt-4 font-display text-[clamp(2.3rem,4.5vw,3.6rem)] font-black leading-[0.95] tracking-tight text-cream">
                   35 anos vestindo
                   <br />
                   <em className="font-medium italic text-gold-soft">
-                    a cidade inteira
+                    gerações da família
                   </em>
                 </h2>
               </Reveal>
-              <Reveal delay={160}>
-                <p className="mt-6 max-w-md text-base leading-relaxed text-cream/70">
-                  A Sapeka nasceu pequena, com uma arara e muita coragem.
-                  Cresceu departamento por departamento — e hoje veste gerações
-                  da mesma família, do enxoval do bebê ao linho do avô.
+
+              <Reveal delay={140}>
+                <p className="mt-4 text-base leading-relaxed text-cream/90">
+                  A <strong>Sapeka</strong> nasceu em 1990 com uma arara e a missão de oferecer acolhimento e moda de qualidade. Cresceu departamento por departamento e hoje atende clientes do Brasil inteiro com o mesmo carinho de balcão de sempre.
                 </p>
               </Reveal>
-
-              <div ref={ref} className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8">
-                {STATS.map((s, i) => (
-                  <Reveal key={s.label} delay={i * 90}>
-                    <Stat {...s} start={inView} />
-                  </Reveal>
-                ))}
-              </div>
             </div>
-          </div>
 
-          {/* timeline column */}
-          <div className="lg:col-span-7">
-            <Reveal delay={120}>
-              <figure className="relative mb-14 -rotate-1">
-                <div className="overflow-hidden border-[6px] border-gold shadow-[16px_16px_0_0_rgba(9,37,28,0.55)]">
+            {/* Card com Foto de Arquivo da Primeira Loja */}
+            <Reveal delay={180}>
+              <figure className="relative -rotate-1 transition-transform duration-500 hover:rotate-0">
+                <div className="relative overflow-hidden rounded-xl border-4 border-gold bg-pine-deep shadow-[12px_12px_0_0_rgba(122,8,19,0.5)]">
                   <img
                     src={IMG.historia}
                     alt="Interior da primeira loja Sapeka nos anos 1990"
                     loading="lazy"
                     className="kenburns aspect-[16/10] w-full object-cover"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-pine-deep/90 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-cream">
+                    <span className="flex items-center gap-1.5 font-bold">
+                      <span className="h-2 w-2 rounded-full bg-gold animate-pulse" />
+                      Arquivo da Família · 1ª Loja
+                    </span>
+                    <span className="rounded bg-gold px-2 py-0.5 font-bold text-pine-deep shadow-sm">c. 1990</span>
+                  </div>
                 </div>
-                <figcaption className="mt-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-cream/50">
-                  <span>arquivo da família · primeira loja</span>
-                  <span className="text-gold">c. 1990</span>
-                </figcaption>
-                <CircularStamp dark className="absolute -right-6 -top-10 h-24 w-24 sm:-right-10 sm:h-28 sm:w-28" />
+                <CircularStamp dark className="absolute -right-4 -top-7 h-20 w-20 drop-shadow-lg sm:-right-7 sm:h-24 sm:w-24" />
               </figure>
             </Reveal>
 
-            <ol className="relative ml-2 border-l-2 border-dashed border-gold/40 pl-8 sm:ml-4 sm:pl-12">
+            {/* Badges e Números de Destaque - Alto Contraste */}
+            <div ref={ref} className="grid grid-cols-2 gap-3 sm:gap-3.5">
+              {STATS.map((s, i) => (
+                <Reveal key={s.label} delay={i * 80}>
+                  <StatItem
+                    value={s.value}
+                    suffix={s.suffix}
+                    label={s.label}
+                    inView={inView}
+                  />
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Citação institucional de fechamento */}
+            <Reveal delay={260}>
+              <div className="rounded-lg border-l-4 border-gold bg-pine-deep/60 px-4 py-3 text-xs italic leading-relaxed text-cream/90 font-display">
+                &ldquo;Do enxoval do bebê ao linho do avô — moda para a família inteira com o mesmo carinho de balcão.&rdquo;
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Coluna da Direita: Linha do Tempo Cronológica (Alto Contraste) */}
+          <div className="lg:col-span-7 lg:pl-6">
+            <Reveal delay={100}>
+              <div className="mb-8 rounded-xl border border-cream/20 bg-pine-deep/70 p-5 shadow-sm">
+                <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-gold">
+                  Linha do Tempo Oficial
+                </p>
+                <p className="mt-1 font-display text-2xl font-bold italic text-cream">
+                  A trajetória da Sapeka ao longo de 35 anos
+                </p>
+              </div>
+            </Reveal>
+
+            <ol className="relative ml-3 border-l-2 border-dashed border-gold/60 pl-6 sm:ml-6 sm:pl-10">
               {MILESTONES.map((m, i) => (
-                <li key={m.year} className="relative pb-12 last:pb-0">
+                <li key={m.year} className="relative pb-8 last:pb-2">
+                  {/* Ponto indicador com anel dourado */}
                   <span
-                    className="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-2 border-gold bg-pine sm:-left-[57px]"
+                    className="absolute -left-[31px] top-4 h-4 w-4 rounded-full border-2 border-gold bg-cream shadow-[0_0_10px_rgba(245,158,11,0.8)] sm:-left-[47px]"
                     aria-hidden="true"
                   />
-                  <Reveal delay={i * 80}>
-                    <p className="font-mono text-sm font-semibold uppercase tracking-[0.3em] text-gold">
-                      {m.year}
-                    </p>
-                    <h3 className="mt-2 font-display text-2xl font-bold tracking-tight text-cream sm:text-[1.7rem]">
-                      {m.title}
-                    </h3>
-                    <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-cream/65">
-                      {m.text}
-                    </p>
+                  <Reveal delay={i * 70}>
+                    <div className="rounded-xl border border-ink/10 bg-cream p-5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-xl">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="inline-block rounded-md bg-pine px-3 py-1 font-mono text-xs font-bold uppercase tracking-[0.18em] text-white shadow-sm">
+                          {m.year}
+                        </span>
+                        <span className="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-ink/40">
+                          Marco {i + 1} de {MILESTONES.length}
+                        </span>
+                      </div>
+                      <h3 className="mt-3 font-display text-xl font-bold tracking-tight text-pine-deep sm:text-2xl">
+                        {m.title}
+                      </h3>
+                      <p className="mt-2 text-[14.5px] leading-relaxed text-ink/80">
+                        {m.text}
+                      </p>
+                    </div>
                   </Reveal>
                 </li>
               ))}

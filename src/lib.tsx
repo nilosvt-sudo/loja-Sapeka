@@ -50,12 +50,13 @@ export function Reveal({
 
 /* ---------------- Count-up on view ---------------- */
 
-export function useCountUp(end: number, start: boolean, duration = 1400) {
-  const [val, setVal] = useState(0);
+export function useCountUp(end: number, start: boolean, duration = 1200) {
+  const [val, setVal] = useState(end);
 
   useEffect(() => {
     if (!start) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setVal(0);
+    const reduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
       setVal(end);
       return;
@@ -130,6 +131,19 @@ export const IconInstagram = (p: IP) => (
     <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
     <circle cx="12" cy="12" r="3.8" />
     <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+export const IconWhatsApp = (p: IP) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.1 7.3C8.92 7.3 8.62 7.37 8.37 7.64C8.11 7.91 7.4 8.58 7.4 9.94C7.4 11.3 8.39 12.61 8.53 12.8C8.67 12.98 10.45 15.74 13.2 16.92C13.85 17.2 14.36 17.38 14.76 17.51C15.42 17.72 16.02 17.69 16.5 17.62C17.03 17.54 18.13 16.95 18.36 16.31C18.6 15.67 18.6 15.12 18.53 15C18.46 14.89 18.27 14.82 18 14.68C17.72 14.54 16.36 13.87 16.11 13.78C15.86 13.69 15.68 13.64 15.5 13.92C15.31 14.19 14.79 14.82 14.63 15C14.47 15.19 14.31 15.21 14.04 15.07C13.76 14.93 12.88 14.64 11.83 13.71C11.01 12.98 10.46 12.08 10.3 11.81C10.14 11.53 10.28 11.39 10.42 11.25C10.55 11.12 10.71 10.91 10.85 10.75C10.99 10.59 11.04 10.47 11.13 10.29C11.22 10.11 11.17 9.95 11.1 9.81C11.04 9.68 10.5 8.33 10.27 7.78C10.05 7.24 9.82 7.32 9.66 7.31C9.5 7.3 9.32 7.3 9.1 7.3Z" />
+  </svg>
+);
+
+export const IconSearch = (p: IP) => (
+  <svg {...base} {...p}>
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-4.35-4.35" />
   </svg>
 );
 
@@ -247,14 +261,14 @@ export function CircularStamp({
           cx="60"
           cy="60"
           r="58"
-          fill={dark ? "#0F3D2E" : "#E8A93B"}
+          fill={dark ? "#7A0813" : "#D81224"}
         />
         <circle
           cx="60"
           cy="60"
           r="44"
           fill="none"
-          stroke={dark ? "#E8A93B" : "#0F3D2E"}
+          stroke={dark ? "#F59E0B" : "#FFFFFF"}
           strokeWidth="1"
           strokeDasharray="3 4"
         />
@@ -263,7 +277,7 @@ export function CircularStamp({
           fontFamily="IBM Plex Mono, monospace"
           fontWeight="600"
           letterSpacing="2.6"
-          fill={dark ? "#E8A93B" : "#0F3D2E"}
+          fill={dark ? "#F59E0B" : "#FFFFFF"}
         >
           <textPath href={`#${id}`}>
             SAPEKA • DESDE 1990 • MODA &amp; CASA •
@@ -273,7 +287,7 @@ export function CircularStamp({
           <path
             d="M0-9a4 4 0 1 1 4 4c-2 0-3.2 1.3-3.2 3.2v1.3L-9.4 7.6a2.7 2.7 0 0 0 1.6 5.2h15.6a2.7 2.7 0 0 0 1.6-5.2L1 1.2"
             fill="none"
-            stroke={dark ? "#E8A93B" : "#0F3D2E"}
+            stroke={dark ? "#F59E0B" : "#FFFFFF"}
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"

@@ -21,10 +21,10 @@ function CatMarqueeRow() {
     <div className="flex shrink-0 items-center">
       {MARQUEE_CATS.map((c, i) => (
         <span key={i} className="flex items-center">
-          <span className="px-6 font-display text-2xl font-medium italic tracking-tight text-pine-deep sm:text-3xl">
+          <span className="px-6 font-display text-2xl font-medium italic tracking-tight text-cream sm:text-3xl">
             {c}
           </span>
-          <IconStar className="h-4 w-4 text-coral" />
+          <IconStar className="h-4 w-4 text-gold" />
         </span>
       ))}
     </div>
@@ -135,10 +135,10 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
           </div>
 
           {/* ------- right: vitrine collage ------- */}
-          <div className="relative lg:col-span-5">
+          <div className="relative lg:col-span-5 max-w-full">
             <Reveal delay={200} className="relative">
               {/* main frame */}
-              <div className="relative ml-6 overflow-hidden border-[6px] border-pine bg-pine shadow-[14px_14px_0_0_rgba(15,61,46,0.16)]">
+              <div className="relative ml-2 sm:ml-6 overflow-hidden border-[5px] sm:border-[6px] border-pine bg-pine shadow-[10px_10px_0_0_rgba(216,18,36,0.18)] sm:shadow-[14px_14px_0_0_rgba(216,18,36,0.18)]">
                 <div className="overflow-hidden">
                   <img
                     src={IMG.hero}
@@ -146,20 +146,22 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
                     className="kenburns aspect-[4/5] w-full object-cover"
                   />
                 </div>
-                <span className="absolute left-4 top-4 bg-gold px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-pine-deep">
+                {/* Tag Vitrine ao vivo no canto superior direito para total visibilidade */}
+                <span className="absolute right-3 top-3 sm:right-4 sm:top-4 z-10 flex items-center gap-1.5 rounded bg-gold px-2.5 py-1 sm:px-3 font-mono text-[9.5px] sm:text-[10.5px] font-bold uppercase tracking-[0.18em] text-pine-deep shadow-md">
+                  <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-red-600 animate-pulse" />
                   Vitrine ao vivo
                 </span>
-                <span className="absolute bottom-4 right-4 rotate-2 bg-pine-deep/85 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-gold-soft">
+                <span className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-10 rotate-2 rounded bg-pine-deep/90 px-2.5 py-1 sm:px-3 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.16em] text-gold-soft shadow-md backdrop-blur-sm">
                   arara nova toda sexta
                 </span>
               </div>
 
-              {/* rotating stamp */}
-              <CircularStamp className="absolute -left-10 -top-8 h-28 w-28 drop-shadow-lg sm:-left-14 sm:h-32 sm:w-32" />
+              {/* rotating stamp no canto superior esquerdo livre e seguro no mobile */}
+              <CircularStamp className="absolute -left-2 -top-4 sm:-left-8 sm:-top-8 z-20 h-20 w-20 sm:h-28 sm:w-28 drop-shadow-xl" />
 
-              {/* floating polaroid: calçados */}
+              {/* floating polaroid: calçados (seguro e sem vazar a lateral no mobile) */}
               <figure
-                className="float-soft absolute -right-4 top-16 w-32 -rotate-3 border-[5px] border-cream bg-cream pb-6 shadow-xl sm:-right-8 sm:w-40"
+                className="float-soft absolute right-0 sm:-right-6 top-14 sm:top-16 w-24 sm:w-36 -rotate-3 border-[4px] sm:border-[5px] border-cream bg-cream pb-4 sm:pb-6 shadow-xl z-20"
                 style={{ "--tilt": "-3deg" } as CSSProperties}
               >
                 <img
@@ -167,14 +169,14 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
                   alt="Calçados"
                   className="aspect-square w-full object-cover"
                 />
-                <figcaption className="absolute inset-x-0 bottom-1 text-center font-mono text-[9px] uppercase tracking-[0.14em] text-ink/60">
+                <figcaption className="absolute inset-x-0 bottom-0.5 sm:bottom-1 text-center font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.12em] text-ink/60">
                   calçados
                 </figcaption>
               </figure>
 
               {/* floating polaroid: casa */}
               <figure
-                className="float-soft absolute -bottom-8 left-2 w-36 rotate-2 border-[5px] border-cream bg-cream pb-6 shadow-xl sm:-left-8 sm:w-44"
+                className="float-soft absolute -bottom-6 left-1 sm:-left-6 w-28 sm:w-40 rotate-2 border-[4px] sm:border-[5px] border-cream bg-cream pb-4 sm:pb-6 shadow-xl z-20"
                 style={{ "--tilt": "2deg", animationDelay: "1.2s" } as CSSProperties}
               >
                 <img
@@ -182,14 +184,14 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
                   alt="Cama, mesa e banho"
                   className="aspect-[4/3] w-full object-cover"
                 />
-                <figcaption className="absolute inset-x-0 bottom-1 text-center font-mono text-[9px] uppercase tracking-[0.14em] text-ink/60">
+                <figcaption className="absolute inset-x-0 bottom-0.5 sm:bottom-1 text-center font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.12em] text-ink/60">
                   cama, mesa &amp; banho
                 </figcaption>
               </figure>
 
-              <IconStar className="twinkle absolute -right-2 -top-4 h-7 w-7 text-gold" />
+              <IconStar className="twinkle absolute right-1 sm:-right-2 -top-3 h-6 w-6 sm:h-7 sm:w-7 text-gold" />
               <IconStar
-                className="twinkle absolute right-10 bottom-[-2.2rem] h-5 w-5 text-coral"
+                className="twinkle absolute right-8 sm:right-10 bottom-[-1.8rem] sm:bottom-[-2.2rem] h-4 w-4 sm:h-5 sm:w-5 text-coral"
                 style={{ animationDelay: "0.8s" } as CSSProperties}
               />
             </Reveal>
@@ -204,7 +206,7 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
       </div>
 
       {/* category marquee band */}
-      <div className="relative border-y-2 border-pine-deep bg-gold py-3.5">
+      <div className="relative border-y border-cream/20 bg-pine-deep py-3.5">
         <div className="marquee-track" style={{ "--dur": "30s" } as CSSProperties}>
           <CatMarqueeRow />
           <CatMarqueeRow />

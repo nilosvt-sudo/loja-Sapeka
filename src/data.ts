@@ -1,3 +1,9 @@
+// ============================================================================
+// CONFIGURAÇÃO DE CONTATO OFICIAL DA LOJA SAPEKA
+// ============================================================================
+export const WHATSAPP_NUMBER = "553299640316";
+export const WHATSAPP_DISPLAY = "(32) 9964-0316";
+
 export const INSTAGRAM_URL = "https://www.instagram.com/sapekaloja/";
 export const INSTAGRAM_HANDLE = "@sapekaloja";
 
@@ -93,6 +99,9 @@ export interface Product {
   oldPrice?: number;
   tag?: "NOVO" | "MAIS VENDIDO" | string;
   img: string;
+  imgHover?: string;
+  sizes?: string[];
+  stockWarning?: string;
 }
 
 export const PRODUCTS: Product[] = [
@@ -103,6 +112,9 @@ export const PRODUCTS: Product[] = [
     price: 189.9,
     tag: "NOVO",
     img: IMG.feminino,
+    imgHover: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=700&auto=format&fit=crop&q=80",
+    sizes: ["P", "M", "G", "GG"],
+    stockWarning: "🔥 Apenas 2 peças no Tam M",
   },
   {
     id: "camisa-linho",
@@ -111,6 +123,9 @@ export const PRODUCTS: Product[] = [
     price: 159.9,
     tag: "NOVO",
     img: IMG.masculino,
+    imgHover: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=700&auto=format&fit=crop&q=80",
+    sizes: ["P", "M", "G", "GG", "XG"],
+    stockWarning: "⚡ Últimas 3 unidades",
   },
   {
     id: "conjunto-kids",
@@ -120,6 +135,9 @@ export const PRODUCTS: Product[] = [
     oldPrice: 124.9,
     tag: "-20%",
     img: IMG.infantil,
+    imgHover: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700&auto=format&fit=crop&q=80",
+    sizes: ["2", "4", "6", "8", "10", "12"],
+    stockWarning: "🔥 Restam poucos conjuntos",
   },
   {
     id: "tenis-urban",
@@ -127,6 +145,9 @@ export const PRODUCTS: Product[] = [
     dept: "calcados",
     price: 219.9,
     img: IMG.calcados,
+    imgHover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&auto=format&fit=crop&q=80",
+    sizes: ["37", "38", "39", "40", "41", "42"],
+    stockWarning: "⚡ Apenas 1 par Tam 41",
   },
   {
     id: "jogo-toalhas",
@@ -135,6 +156,8 @@ export const PRODUCTS: Product[] = [
     price: 129.9,
     tag: "MAIS VENDIDO",
     img: IMG.casa,
+    imgHover: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=700&auto=format&fit=crop&q=80",
+    sizes: ["Único"],
   },
   {
     id: "denim-slim",
@@ -142,6 +165,9 @@ export const PRODUCTS: Product[] = [
     dept: "feminino",
     price: 179.9,
     img: IMG.jeans,
+    imgHover: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=700&auto=format&fit=crop&q=80",
+    sizes: ["36", "38", "40", "42", "44"],
+    stockWarning: "🔥 Últimas 2 peças no 38",
   },
   {
     id: "bolsa-tote",
@@ -151,6 +177,9 @@ export const PRODUCTS: Product[] = [
     oldPrice: 214.9,
     tag: "-30%",
     img: IMG.bolsa,
+    imgHover: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=700&auto=format&fit=crop&q=80",
+    sizes: ["Único"],
+    stockWarning: "⚡ Quase esgotado na loja",
   },
   {
     id: "tenis-kids",
@@ -159,6 +188,8 @@ export const PRODUCTS: Product[] = [
     price: 109.9,
     tag: "NOVO",
     img: IMG.kidsTenis,
+    imgHover: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=700&auto=format&fit=crop&q=80",
+    sizes: ["24", "26", "28", "30", "32"],
   },
 ];
 
@@ -251,36 +282,56 @@ export interface Testimonial {
   name: string;
   place: string;
   tilt: number;
+  avatar: string;
+  bought: string;
+  rating: number;
+  verified: boolean;
 }
 
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "Comprei pelo direct numa segunda e chegou na quinta. Embalagem cheirosa, bilhete escrito à mão… virei cliente de verdade.",
-    name: "Mariana C.",
+      "Comprei o Vestido Floral pelo direct numa segunda e chegou na quinta! Embalagem cheirosa, bilhete escrito à mão… virei cliente fiel.",
+    name: "Mariana Costa",
     place: "Fortaleza · CE",
-    tilt: -2.5,
+    tilt: -1.5,
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    bought: "Vestido Midi Floral (Tam: M)",
+    rating: 5,
+    verified: true,
   },
   {
     quote:
-      "Visto meus dois filhos na Sapeka desde bebês. A ala infantil tem cada achado que nem shopping grande tem.",
-    name: "Paula R.",
+      "Visto meus dois filhos na Sapeka desde bebês. A ala infantil tem achados de qualidade impecável que duram muito.",
+    name: "Paula Rezende",
     place: "Belo Horizonte · MG",
-    tilt: 1.8,
+    tilt: 1.2,
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+    bought: "Conjunto Kids & Tênis (Tam: 6)",
+    rating: 5,
+    verified: true,
   },
   {
     quote:
-      "Atendimento rápido, foto das peças no manequim e postagem no mesmo dia. Compro calçado lá de olho fechado.",
-    name: "Jorge M.",
+      "Atendimento rápido no WhatsApp, mandaram fotos do tênis no manequim e postaram no mesmo dia com rastreio!",
+    name: "Jorge Medeiros",
     place: "Curitiba · PR",
-    tilt: 2.4,
+    tilt: 1.8,
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    bought: "Tênis Urban Comfort (Tam: 41)",
+    rating: 5,
+    verified: true,
   },
   {
     quote:
-      "O enxoval da casa nova veio todo de lá: Buddemeyer, Lepper… qualidade de loja grande com preço de interior.",
+      "O enxoval da casa nova veio todo de lá: Buddemeyer, Lepper… qualidade de loja tradicional com preço justo e envio seguro.",
     name: "Cláudia & André",
     place: "Recife · PE",
-    tilt: -1.6,
+    tilt: -1.2,
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+    bought: "Jogo de Toalhas & Lençóis 5 pçs",
+    rating: 5,
+    verified: true,
   },
 ];
 
@@ -297,3 +348,55 @@ export const fmtBRL = (v: number) =>
 
 export const installment = (v: number) =>
   (v / 6).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+export function buildWhatsAppCartUrl(
+  items: { product: Product; qty: number; size?: string }[],
+  subtotal: number,
+  shipping?: {
+    option: {
+      name: string;
+      price: number;
+      deadlineDays: string;
+    };
+    destination: {
+      cep: string;
+      city: string;
+      state: string;
+      neighborhood?: string;
+    };
+  },
+): string {
+  const lineItems = items
+    .map(
+      (item, idx) =>
+        `${idx + 1}️⃣ *${item.qty}x* ${item.product.name} ${item.size ? `(Tam: *${item.size}*)` : ""} — ${fmtBRL(item.product.price * item.qty)}`,
+    )
+    .join("\n");
+
+  const shippingCost = shipping?.option.price ?? 0;
+  const total = subtotal + shippingCost;
+
+  const shippingBlock = shipping
+    ? [
+        `\n🚚 *OPÇÃO DE ENTREGA:*`,
+        `• Modalidade: *${shipping.option.name}*`,
+        `• Valor: *${shippingCost === 0 ? "Grátis (Retirada no Balcão)" : fmtBRL(shippingCost)}*`,
+        `• Prazo: *${shipping.option.deadlineDays}*`,
+        `• Destino: *${shipping.destination.city}/${shipping.destination.state}* (CEP: ${shipping.destination.cep})`,
+      ].join("\n")
+    : `\n📦 *Frete:* A calcular no atendimento`;
+
+  const message = [
+    `🛍️ *Olá, Loja Sapeka!*`,
+    `Gostaria de fechar meu pedido feito pelo site:\n`,
+    `📋 *ITENS DO PEDIDO:*`,
+    lineItems,
+    `\n💰 *Subtotal das Peças:* ${fmtBRL(subtotal)}`,
+    shippingBlock,
+    `\n✨ *VALOR TOTAL DO PEDIDO:* *${fmtBRL(total)}*`,
+    `💳 *Parcelamento:* em até 6x de ${installment(total)} sem juros`,
+    `\nPor favor, me confirme a disponibilidade das peças e os dados para pagamento!`,
+  ].join("\n");
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}

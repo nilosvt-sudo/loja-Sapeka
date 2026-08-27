@@ -87,7 +87,7 @@ export function Shipping() {
 
           {/* shipping ticket */}
           <Reveal delay={200}>
-            <div className="relative -rotate-1 border-2 border-ink/80 bg-cream shadow-[14px_14px_0_0_rgba(15,61,46,0.18)] transition-transform duration-500 hover:rotate-0">
+            <div className="relative -rotate-1 border-2 border-ink/80 bg-cream shadow-[14px_14px_0_0_rgba(216,18,36,0.18)] transition-transform duration-500 hover:rotate-0">
               {/* ticket header */}
               <div className="flex items-center justify-between border-b-2 border-dashed border-ink/25 px-6 py-4">
                 <p className="font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-pine">
@@ -122,9 +122,9 @@ export function Shipping() {
               </div>
 
               {/* ticket footer */}
-              <div className="flex items-center justify-between gap-6 border-t-2 border-dashed border-ink/25 px-6 py-5">
-                <Barcode className="h-10 w-36 text-ink/75" />
-                <p className="text-right font-mono text-[10px] uppercase leading-relaxed tracking-[0.18em] text-ink/50">
+              <div className="flex items-center justify-between flex-wrap gap-4 border-t-2 border-dashed border-ink/25 px-4 sm:px-6 py-4 sm:py-5 w-full">
+                <Barcode className="h-9 sm:h-10 w-32 sm:w-36 text-ink/75 shrink-0" />
+                <p className="text-right font-mono text-[9.5px] sm:text-[10px] uppercase leading-relaxed tracking-[0.18em] text-ink/60 shrink-0">
                   origem: Sapeka
                   <br />
                   destino: <span className="font-bold text-coral">todo o Brasil</span>
@@ -155,29 +155,54 @@ export function Shipping() {
           {TESTIMONIALS.map((t, i) => (
             <Reveal key={t.name} delay={i * 110}>
               <figure
-                className="relative h-full border border-ink/15 bg-cream p-6 pt-8 shadow-[6px_8px_0_0_rgba(15,61,46,0.1)] transition-all duration-300 hover:rotate-0 hover:shadow-[6px_8px_0_0_rgba(232,169,59,0.55)]"
+                className="relative h-full flex flex-col justify-between border-2 border-ink/15 bg-cream p-5 pt-7 rounded-xl shadow-[6px_8px_0_0_rgba(216,18,36,0.12)] transition-all duration-300 hover:rotate-0 hover:border-gold hover:shadow-[8px_10px_0_0_rgba(245,158,11,0.4)]"
                 style={{ transform: `rotate(${t.tilt}deg)` }}
               >
-                {/* tape */}
+                {/* tape vintage */}
                 <span
-                  className="absolute -top-2.5 left-1/2 h-5 w-16 -translate-x-1/2 rotate-2 bg-gold/70"
+                  className="absolute -top-2.5 left-1/2 h-5 w-16 -translate-x-1/2 rotate-2 bg-gold/80 rounded-sm shadow-sm"
                   aria-hidden="true"
                 />
-                <div className="flex gap-1 text-gold">
-                  {Array.from({ length: 5 }).map((_, s) => (
-                    <IconStar key={s} className="h-3.5 w-3.5" />
-                  ))}
+
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    {/* Estrelas */}
+                    <div className="flex gap-1 text-gold">
+                      {Array.from({ length: t.rating || 5 }).map((_, s) => (
+                        <IconStar key={s} className="h-3.5 w-3.5 fill-gold" />
+                      ))}
+                    </div>
+                    {t.verified && (
+                      <span className="inline-flex items-center gap-1 font-mono text-[9px] font-bold uppercase tracking-wider text-[#25D366] bg-green-50 px-1.5 py-0.5 rounded border border-green-200">
+                        ✓ Verificado
+                      </span>
+                    )}
+                  </div>
+
+                  <blockquote className="mt-3.5 font-display text-[15.5px] font-medium italic leading-relaxed text-ink/90">
+                    “{t.quote}”
+                  </blockquote>
                 </div>
-                <blockquote className="mt-4 font-display text-[17px] font-medium italic leading-relaxed text-ink/85">
-                  “{t.quote}”
-                </blockquote>
-                <figcaption className="mt-5 border-t border-dashed border-ink/20 pt-3.5">
-                  <p className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-pine">
-                    {t.name}
-                  </p>
-                  <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink/45">
-                    {t.place}
-                  </p>
+
+                <figcaption className="mt-5 border-t border-dashed border-ink/20 pt-3.5 flex items-center gap-3">
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="h-10 w-10 rounded-full object-cover border-2 border-gold shrink-0 shadow-sm"
+                  />
+                  <div className="min-w-0">
+                    <p className="font-mono text-[11.5px] font-bold uppercase tracking-[0.12em] text-pine truncate">
+                      {t.name}
+                    </p>
+                    <p className="font-mono text-[9.5px] uppercase tracking-[0.1em] text-ink/50">
+                      {t.place}
+                    </p>
+                    {t.bought && (
+                      <p className="mt-0.5 text-[9px] font-mono text-coral font-medium truncate">
+                        🏷️ {t.bought}
+                      </p>
+                    )}
+                  </div>
                 </figcaption>
               </figure>
             </Reveal>

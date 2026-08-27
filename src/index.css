@@ -2,16 +2,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #f4f0e4;
-  --color-cream: #fdfaf1;
-  --color-ink: #22302a;
-  --color-pine: #0f3d2e;
-  --color-pine-deep: #09251c;
-  --color-moss: #37604c;
-  --color-gold: #e8a93b;
-  --color-gold-soft: #f3cd85;
-  --color-coral: #e4572e;
-  --color-sage: #d9ddca;
+  --color-paper: #fdf8f8;
+  --color-cream: #ffffff;
+  --color-ink: #1a0e10;
+  --color-pine: #d81224;
+  --color-pine-deep: #7a0813;
+  --color-moss: #a8101e;
+  --color-gold: #f59e0b;
+  --color-gold-soft: #fed7aa;
+  --color-coral: #e11d48;
+  --color-sage: #fce7eb;
 
   --font-display: "Fraunces", "Georgia", serif;
   --font-body: "Instrument Sans", "Segoe UI", sans-serif;
