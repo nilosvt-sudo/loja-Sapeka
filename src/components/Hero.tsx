@@ -33,22 +33,24 @@ function CatMarqueeRow() {
 
 export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
   return (
-    <section id="topo" className="relative overflow-hidden">
+    <section id="topo" className="relative overflow-hidden w-full">
       {/* layered backdrop */}
       <div className="pinstripe absolute inset-0" aria-hidden="true" />
       <div
         className="dot-grid absolute inset-y-0 left-0 w-1/3 opacity-60"
         aria-hidden="true"
       />
-      <span
-        className="text-outline pointer-events-none absolute -right-6 top-6 hidden select-none font-display text-[11rem] font-black leading-none tracking-tight lg:block"
-        aria-hidden="true"
-      >
-        1990
-      </span>
 
       <div className="relative mx-auto max-w-[1440px] px-4 pb-16 pt-10 sm:px-6 lg:px-8 xl:px-10 lg:pb-24 lg:pt-16">
-        <div className="grid items-center gap-12 lg:grid-cols-12">
+        {/* Número decorativo 1990 perfeitamente contido dentro do grid e sem vazar a lateral */}
+        <span
+          className="pointer-events-none absolute right-4 xl:right-10 top-4 hidden select-none font-display text-[9rem] xl:text-[12rem] font-black leading-none tracking-tight text-pine opacity-[0.04] lg:block"
+          aria-hidden="true"
+        >
+          1990
+        </span>
+
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           {/* ------- left: wordmark & index ------- */}
           <div className="lg:col-span-7">
             <Reveal>
@@ -137,8 +139,8 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
           {/* ------- right: vitrine collage ------- */}
           <div className="relative lg:col-span-5 max-w-full">
             <Reveal delay={200} className="relative">
-              {/* main frame */}
-              <div className="relative ml-2 sm:ml-6 overflow-hidden border-[5px] sm:border-[6px] border-pine bg-pine shadow-[10px_10px_0_0_rgba(216,18,36,0.18)] sm:shadow-[14px_14px_0_0_rgba(216,18,36,0.18)]">
+              {/* main frame perfeitamente alinhado e simétrico */}
+              <div className="relative overflow-hidden border-[5px] sm:border-[6px] border-pine bg-pine shadow-[10px_10px_0_0_rgba(216,18,36,0.18)] sm:shadow-[14px_14px_0_0_rgba(216,18,36,0.18)]">
                 <div className="overflow-hidden">
                   <img
                     src={IMG.hero}
