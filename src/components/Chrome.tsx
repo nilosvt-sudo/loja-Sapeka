@@ -324,7 +324,7 @@ export function Header({
             : "border-transparent bg-paper/0"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8 xl:px-10">
           {/* logo */}
           <a href="#topo" className="group flex items-center gap-2.5 sm:gap-3 shrink-0">
             <div className="relative overflow-hidden rounded-lg border border-pine/20 shadow-sm transition-transform duration-300 group-hover:scale-105 shrink-0">

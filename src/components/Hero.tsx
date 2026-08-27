@@ -47,7 +47,7 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
         1990
       </span>
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 lg:pb-24 lg:pt-16">
+      <div className="relative mx-auto max-w-[1440px] px-4 pb-16 pt-10 sm:px-6 lg:px-8 xl:px-10 lg:pb-24 lg:pt-16">
         <div className="grid items-center gap-12 lg:grid-cols-12">
           {/* ------- left: wordmark & index ------- */}
           <div className="lg:col-span-7">

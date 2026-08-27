@@ -37,7 +37,7 @@ export function Shipping() {
     <section id="envio" className="relative scroll-mt-24 overflow-hidden py-20 lg:py-28">
       <div className="pinstripe absolute inset-0" aria-hidden="true" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-10">
           {/* copy + routes */}
           <div>
@@ -136,7 +136,7 @@ export function Shipping() {
       </div>
 
       {/* testimonials */}
-      <div className="relative mx-auto mt-24 max-w-7xl px-4 sm:px-6 lg:mt-32">
+      <div className="relative mx-auto mt-24 max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 lg:mt-32">
         <div className="mb-12 text-center">
           <Reveal>
             <p className="font-mono text-[11px] font-medium uppercase tracking-[0.28em] text-coral">

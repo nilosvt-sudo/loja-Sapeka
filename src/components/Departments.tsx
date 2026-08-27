@@ -104,7 +104,7 @@ export function Departments({ onExplore }: { onExplore: (d: DeptId) => void }) {
   return (
     <section id="departamentos" className="relative scroll-mt-24 bg-cream py-20 lg:py-28">
       <div className="dot-grid pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* header row */}
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6 lg:mb-12">
           <div>

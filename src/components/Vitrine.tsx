@@ -204,7 +204,7 @@ export function Vitrine({
         sale
       </span>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
           <div>
             <Reveal>
@@ -257,8 +257,11 @@ export function Vitrine({
           </div>
         </Reveal>
 
-        {/* grid */}
-        <div key={filter} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {/* grid responsivo fluido para telas grandes */}
+        <div
+          key={filter}
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-7"
+        >
           {list.map((p, i) => (
             <ProductCard key={p.id} product={p} index={i} onAdd={onAdd} />
           ))}

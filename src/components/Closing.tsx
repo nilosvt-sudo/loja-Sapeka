@@ -28,7 +28,7 @@ export function InstagramCTA() {
         direct
       </span>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
+      <div className="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 lg:px-8 xl:px-10 lg:py-28">
         <div className="grid items-center gap-14 lg:grid-cols-2">
           <div>
             <Reveal>
@@ -126,7 +126,7 @@ export function InstagramCTA() {
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-pine-deep text-cream">
-      <div className="mx-auto max-w-7xl px-4 pb-10 pt-16 sm:px-6">
+      <div className="mx-auto max-w-[1440px] px-4 pb-10 pt-16 sm:px-6 lg:px-8 xl:px-10">
         <div className="grid gap-12 lg:grid-cols-12">
           {/* wordmark */}
           <div className="lg:col-span-5">

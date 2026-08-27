@@ -72,7 +72,7 @@ export function Story() {
     <section id="historia" className="relative scroll-mt-24 bg-pine text-cream">
       <div className="pinstripe-gold pointer-events-none absolute inset-0 opacity-80" aria-hidden="true" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
+      <div className="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 lg:px-8 xl:px-10 lg:py-28">
         <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-14">
           {/* Coluna da Esquerda: Resumo Institucional, Foto de Arquivo e Badges (STICKY) */}
           <div className="flex flex-col gap-7 lg:col-span-5 lg:sticky lg:top-24 lg:self-start">
