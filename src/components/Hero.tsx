@@ -42,15 +42,15 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
       />
 
       <div className="relative mx-auto max-w-[1440px] px-4 pb-16 pt-10 sm:px-6 lg:px-8 xl:px-10 lg:pb-24 lg:pt-16">
-        {/* Número decorativo 1990 perfeitamente contido dentro do grid e sem vazar a lateral */}
+        {/* Marca d'água decorativa '1990' ancorada à esquerda atrás do título principal */}
         <span
-          className="pointer-events-none absolute right-4 xl:right-10 top-4 hidden select-none font-display text-[9rem] xl:text-[12rem] font-black leading-none tracking-tight text-pine opacity-[0.04] lg:block"
+          className="text-outline pointer-events-none absolute left-3 sm:left-6 lg:left-8 top-4 sm:top-6 select-none font-display text-[5.5rem] sm:text-[7.5rem] lg:text-[10.5rem] xl:text-[12.5rem] font-black leading-none tracking-tight opacity-10 text-pine pointer-events-none"
           aria-hidden="true"
         >
           1990
         </span>
 
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12 relative z-10">
           {/* ------- left: wordmark & index ------- */}
           <div className="lg:col-span-7">
             <Reveal>
