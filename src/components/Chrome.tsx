@@ -127,9 +127,7 @@ export function SearchModal({
     return PRODUCTS.filter(
       (p) =>
         p.name.toLowerCase().includes(q) ||
-        p.desc.toLowerCase().includes(q) ||
         p.dept.toLowerCase().includes(q) ||
-        p.fabric.toLowerCase().includes(q) ||
         (p.tag && p.tag.toLowerCase().includes(q)),
     );
   }, [query]);
@@ -579,6 +577,24 @@ export function CartDrawer({
   const [shippingResult, setShippingResult] = useState<ShippingResult | null>(null);
   const [selectedShipping, setSelectedShipping] = useState<ShippingOption | null>(null);
   const [shippingError, setShippingError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyOrder = () => {
+    const url = buildWhatsAppCartUrl(
+      items,
+      subtotal,
+      selectedShipping && shippingResult
+        ? {
+            option: selectedShipping,
+            destination: shippingResult,
+          }
+        : undefined,
+    );
+    const msg = decodeURIComponent(url.split("text=")[1] || "");
+    navigator.clipboard.writeText(msg);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -642,11 +658,15 @@ export function CartDrawer({
         aria-label="Fechar sacola"
       />
       <aside
-        className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-cream shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`fixed right-0 top-0 flex flex-col h-full max-h-[100dvh] w-full max-w-md bg-cream shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{
+          height: "100dvh",
+          maxHeight: "100dvh",
+        }}
       >
-        <header className="flex items-center justify-between border-b border-dashed border-ink/20 px-6 py-5">
+        <header className="flex shrink-0 items-center justify-between border-b border-dashed border-ink/20 px-4 py-3.5 sm:px-6 sm:py-4">
           <div>
             <h2 className="font-display text-2xl font-bold italic text-pine">
               Sua sacola
@@ -664,7 +684,12 @@ export function CartDrawer({
           </button>
         </header>
 
-        <div className="flex-1 overflow-y-auto px-6 py-5">
+        <div
+          className="flex-1 overflow-y-auto overscroll-contain p-4 touch-scroll"
+          style={{
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
           {items.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center text-center">
               <span className="grid h-20 w-20 place-items-center rounded-full border border-dashed border-ink/25 text-ink/40">
@@ -764,11 +789,18 @@ export function CartDrawer({
                   <div className="relative flex-1">
                     <input
                       type="text"
+                      inputMode="numeric"
                       value={cep}
                       onChange={handleCepChange}
+                      onFocus={(e) => {
+                        const target = e.target;
+                        setTimeout(() => {
+                          target.scrollIntoView({ behavior: "smooth", block: "center" });
+                        }, 300);
+                      }}
                       placeholder="Ex: 01001-000"
                       maxLength={9}
-                      className="w-full rounded-lg border border-ink/25 bg-cream px-3 py-2 font-mono text-xs text-ink placeholder:text-ink/35 focus:border-pine focus:outline-none"
+                      className="w-full rounded-lg border border-ink/25 bg-cream px-3 py-2 font-mono text-base sm:text-xs text-ink placeholder:text-ink/35 focus:border-pine focus:outline-none"
                     />
                   </div>
                   <button
@@ -794,106 +826,72 @@ export function CartDrawer({
                   </div>
                 )}
 
-                {/* Resultados das Cotações de Frete */}
+                {/* Resultados das Cotações de Frete - Seletor Compacto */}
                 {shippingResult && (
-                  <div className="mt-3.5 space-y-2 border-t border-dashed border-ink/15 pt-3">
-                    <div className="flex items-center justify-between text-[11px] font-mono text-ink/70 mb-1">
+                  <div className="mt-2.5 border-t border-dashed border-ink/15 pt-2.5">
+                    <div className="flex items-center justify-between text-[11px] font-mono text-ink/75 mb-1.5">
                       <span>📍 Destino: <strong>{shippingResult.city} - {shippingResult.state}</strong></span>
-                      <span className="text-[10px] text-ink/45">~{shippingResult.weightKg}kg</span>
+                      <span className="text-pine font-bold">
+                        {selectedShipping?.price === 0 ? "Grátis" : fmtBRL(selectedShipping?.price || 0)}
+                      </span>
                     </div>
 
-                    <p className="font-mono text-[10px] font-semibold uppercase tracking-wider text-ink/50">
-                      Selecione a opção de entrega:
-                    </p>
-
-                    <div className="space-y-2">
-                      {shippingResult.options.map((opt) => {
-                        const isSelected = selectedShipping?.id === opt.id;
-                        return (
-                          <button
-                            key={opt.id}
-                            type="button"
-                            onClick={() => setSelectedShipping(opt)}
-                            className={`flex w-full items-center justify-between rounded-lg border p-2.5 text-left transition-all ${
-                              isSelected
-                                ? "border-pine bg-cream shadow-xs ring-2 ring-pine/25"
-                                : "border-ink/15 bg-cream/50 hover:bg-cream hover:border-pine/30"
-                            }`}
-                          >
-                            <div className="flex items-center gap-2.5">
-                              <div
-                                className={`grid h-4 w-4 place-items-center rounded-full border ${
-                                  isSelected
-                                    ? "border-pine bg-pine text-gold"
-                                    : "border-ink/30 bg-paper"
-                                }`}
-                              >
-                                {isSelected && (
-                                  <div className="h-1.5 w-1.5 rounded-full bg-gold" />
-                                )}
-                              </div>
-                              <div>
-                                <div className="flex items-center gap-2">
-                                  <span className="font-display text-sm font-semibold text-pine">
-                                    {opt.name}
-                                  </span>
-                                  {opt.badge && (
-                                    <span className="rounded bg-gold/30 px-1.5 py-0.2 font-mono text-[9px] font-bold text-pine-deep">
-                                      {opt.badge}
-                                    </span>
-                                  )}
-                                </div>
-                                <span className="block font-mono text-[10px] text-ink/60">
-                                  Prazo: <strong>{opt.deadlineDays}</strong>
-                                </span>
-                              </div>
-                            </div>
-                            <span className="font-mono text-xs font-bold text-pine">
-                              {opt.price === 0 ? "Grátis" : fmtBRL(opt.price)}
-                            </span>
-                          </button>
-                        );
-                      })}
+                    <div className="relative">
+                      <select
+                        aria-label="Selecione a opção de entrega"
+                        value={selectedShipping?.id || ""}
+                        onChange={(e) => {
+                          const found = shippingResult.options.find((o) => o.id === e.target.value);
+                          if (found) setSelectedShipping(found);
+                        }}
+                        className="w-full appearance-none rounded-lg border border-ink/20 bg-cream px-3 py-2 pr-8 font-mono text-xs text-ink focus:border-pine focus:outline-none"
+                      >
+                        {shippingResult.options.map((opt) => (
+                          <option key={opt.id} value={opt.id}>
+                            {opt.name} — {opt.price === 0 ? "Grátis (Balcão)" : fmtBRL(opt.price)} ({opt.deadlineDays})
+                          </option>
+                        ))}
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-ink/40">
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
                 )}
               </div>
+
+              {/* Lembrete amigável sutil */}
+              <p className="text-center font-mono text-[9.5px] text-ink/50">
+                💬 Peças conferidas no balcão · Pagamento via Pix ou Cartão
+              </p>
             </div>
           )}
         </div>
 
         {items.length > 0 && (
-          <footer className="border-t border-dashed border-ink/20 bg-paper/90 px-6 py-5">
-            <div className="space-y-1.5">
-              <div className="flex items-center justify-between text-xs font-mono text-ink/70">
-                <span>Subtotal das peças:</span>
-                <span>{fmtBRL(subtotal)}</span>
-              </div>
-              <div className="flex items-center justify-between text-xs font-mono text-ink/70">
-                <span>
-                  Entrega ({selectedShipping ? selectedShipping.service : "A calcular"}):
-                </span>
-                <span className="font-semibold text-pine">
-                  {selectedShipping
-                    ? selectedShipping.price === 0
-                      ? "Grátis (Balcão)"
-                      : fmtBRL(selectedShipping.price)
-                    : "Calcule acima"}
-                </span>
-              </div>
-              <div className="flex items-end justify-between pt-2 border-t border-ink/10">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-pine">
-                  Total do Pedido
-                </span>
-                <span className="font-display text-2xl font-bold text-pine">
-                  {fmtBRL(orderTotal)}
-                </span>
-              </div>
+          <footer className="flex-shrink-0 border-t border-ink/15 bg-white p-3.5 sm:p-4 shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
+            <div className="flex items-center justify-between text-xs font-mono text-ink/70">
+              <span>Subtotal: <strong>{fmtBRL(subtotal)}</strong></span>
+              <span>
+                Frete: <strong className="text-pine">{selectedShipping ? (selectedShipping.price === 0 ? "Grátis" : fmtBRL(selectedShipping.price)) : "A calcular"}</strong>
+              </span>
             </div>
 
-            <p className="mt-1 text-right font-mono text-[10px] text-ink/50">
-              ou 6x de {fmtBRL(orderTotal / 6)} sem juros no cartão
-            </p>
+            <div className="flex items-baseline justify-between pt-1 border-t border-ink/10 mt-1.5">
+              <div>
+                <span className="font-mono text-[10.5px] font-bold uppercase tracking-[0.18em] text-pine">
+                  Total do Pedido
+                </span>
+                <span className="block font-mono text-[9px] text-ink/45">
+                  até 6x de {fmtBRL(orderTotal / 6)} sem juros
+                </span>
+              </div>
+              <span className="font-display text-2xl font-bold text-pine leading-none">
+                {fmtBRL(orderTotal)}
+              </span>
+            </div>
 
             {/* Botão Principal: WhatsApp com Pedido & Frete Formatados */}
             <a
@@ -909,26 +907,31 @@ export function CartDrawer({
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 flex items-center justify-center gap-2.5 rounded-lg bg-[#25D366] py-3.5 font-mono text-[12px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_4px_16px_rgba(37,211,102,0.35)] transition-all hover:bg-[#20bd5a] hover:shadow-[0_6px_22px_rgba(37,211,102,0.5)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99]"
+              className="mt-2.5 flex items-center justify-center gap-2 rounded-lg bg-[#25D366] py-3 font-mono text-[12px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_4px_16px_rgba(37,211,102,0.35)] transition-all hover:bg-[#20bd5a] active:scale-[0.99]"
             >
-              <IconWhatsApp className="h-5 w-5" />
-              Finalizar pedido pelo WhatsApp
+              <IconWhatsApp className="h-4.5 w-4.5" />
+              Enviar pedido para o WhatsApp
             </a>
 
-            {/* Botão Secundário: Instagram */}
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2.5 flex items-center justify-center gap-2 rounded-lg border border-ink/25 bg-transparent py-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-ink transition-colors hover:border-coral hover:bg-coral/5 hover:text-coral"
-            >
-              <IconInstagram className="h-4 w-4" />
-              Finalizar pelo Instagram
-            </a>
-
-            <p className="mt-3 text-center font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink/45">
-              Envio seguro rastreado para os 27 estados do Brasil 🇧🇷
-            </p>
+            {/* Ações Secundárias em Linha Única Compacta */}
+            <div className="mt-2 flex items-center justify-center gap-3 font-mono text-[10.5px]">
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink/60 transition-colors hover:text-coral hover:underline"
+              >
+                Ou finalizar via Direct
+              </a>
+              <span className="text-ink/20">·</span>
+              <button
+                type="button"
+                onClick={handleCopyOrder}
+                className="text-ink/60 transition-colors hover:text-pine hover:underline"
+              >
+                {copied ? "✓ Resumo copiado!" : "Copiar resumo"}
+              </button>
+            </div>
           </footer>
         )}
       </aside>

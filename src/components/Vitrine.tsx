@@ -196,6 +196,20 @@ export function Vitrine({
 
   return (
     <section id="vitrine" className="relative scroll-mt-24 overflow-hidden py-20 lg:py-28">
+      {/* Âncoras dedicadas para links de departamento (#vitrine-feminino, #feminino, etc) */}
+      <div className="absolute top-0 left-0 pointer-events-none" aria-hidden="true">
+        <span id="vitrine-feminino" className="block -mt-28 pt-28" />
+        <span id="vitrine-masculino" className="block -mt-28 pt-28" />
+        <span id="vitrine-infantil" className="block -mt-28 pt-28" />
+        <span id="vitrine-calcados" className="block -mt-28 pt-28" />
+        <span id="vitrine-casa" className="block -mt-28 pt-28" />
+        <span id="feminino" className="block -mt-28 pt-28" />
+        <span id="masculino" className="block -mt-28 pt-28" />
+        <span id="infantil" className="block -mt-28 pt-28" />
+        <span id="calcados" className="block -mt-28 pt-28" />
+        <span id="casa" className="block -mt-28 pt-28" />
+      </div>
+
       {/* Marca d'água decorativa sutil de fundo (sem colidir com o título) */}
       <span
         className="pointer-events-none absolute -left-8 sm:-left-12 -top-4 sm:-top-8 select-none font-display text-[7.5rem] sm:text-[11rem] lg:text-[13.5rem] font-black uppercase leading-none tracking-tight opacity-[0.05] text-pine"
@@ -269,8 +283,7 @@ export function Vitrine({
 
         <Reveal delay={100}>
           <p className="mt-10 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-ink/50">
-            Gostou de alguma peça? Chama no direct que a gente separa, mede e
-            posta pra você ✈
+            Dúvidas ou prefere atendimento personalizado? Adicione à sacola para enviar seu pedido ou fale no WhatsApp / Direct que separamos, medimos e postamos pra você! ✈
           </p>
         </Reveal>
       </div>

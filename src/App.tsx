@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { CartDrawer, Header, Ticker, type CartItem } from "./components/Chrome";
 import { Hero } from "./components/Hero";
 import { Departments } from "./components/Departments";
@@ -58,13 +58,62 @@ export default function App() {
     setCart((prev) => prev.filter((i) => i.product.id !== id));
   }, []);
 
-  const explore = useCallback((d: DeptId) => {
-    setFilter(d);
+  const [hideWhatsApp, setHideWhatsApp] = useState(false);
+
+  const scrollToVitrine = useCallback((targetId?: string) => {
     requestAnimationFrame(() => {
-      document
-        .getElementById("vitrine")
-        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const el = (targetId ? document.getElementById(targetId) : null) || document.getElementById("vitrine");
+      if (el) {
+        const headerOffset = 90;
+        const elPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
     });
+  }, []);
+
+  const explore = useCallback(
+    (d: DeptId) => {
+      setFilter(d);
+      // Atualiza URL sem recarregar a página
+      window.history.replaceState(null, "", `#vitrine-${d}`);
+      scrollToVitrine(`vitrine-${d}`);
+    },
+    [scrollToVitrine],
+  );
+
+  // Sincronizar âncoras de departamento (#feminino, #vitrine-feminino, etc)
+  useEffect(() => {
+    const handleHash = () => {
+      const raw = window.location.hash.replace("#", "");
+      const clean = raw.replace("vitrine-", "") as DeptId;
+      if (["feminino", "masculino", "infantil", "calcados", "casa"].includes(clean)) {
+        setFilter(clean);
+        scrollToVitrine(`vitrine-${clean}`);
+      }
+    };
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, [scrollToVitrine]);
+
+  // Ocultar botão flutuante temporariamente enquanto a barra de miniaturas de departamentos estiver na tela
+  useEffect(() => {
+    const target = document.getElementById("barra-departamentos");
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHideWhatsApp(entry.isIntersecting);
+      },
+      { threshold: 0.15 },
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
   }, []);
 
   const totalQty = cart.reduce((s, i) => s + i.qty, 0);
@@ -88,11 +137,11 @@ export default function App() {
         <InstagramCTA />
       </main>
 
-      <Footer />
+      <Footer onExplore={explore} />
 
       {/* Toast Alert Flutuante de Peça Adicionada */}
       {toast && (
-        <div className="card-in fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-50 flex max-w-[calc(100vw-2rem)] sm:max-w-sm items-center gap-3 rounded-xl border border-pine/30 bg-cream/95 p-3 sm:p-3.5 shadow-2xl backdrop-blur-md">
+        <div className="card-in fixed bottom-36 right-4 sm:bottom-24 sm:right-6 z-50 flex max-w-[calc(100vw-2rem)] sm:max-w-sm items-center gap-3 rounded-xl border border-pine/30 bg-cream/95 p-3 sm:p-3.5 shadow-2xl backdrop-blur-md">
           <div className="relative h-12 w-11 sm:h-14 sm:w-12 shrink-0 overflow-hidden rounded-lg border border-ink/10">
             <img
               src={toast.product.img}
@@ -152,7 +201,11 @@ export default function App() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Fale conosco no WhatsApp"
-        className="group fixed bottom-6 right-6 z-40 flex items-center justify-center gap-2 sm:gap-2.5 rounded-full bg-[#25D366] p-3.5 sm:px-4 sm:py-3.5 text-white shadow-[0_8px_25px_rgba(37,211,102,0.45)] transition-all duration-300 hover:scale-105 hover:bg-[#20bd5a] hover:shadow-[0_12px_30px_rgba(37,211,102,0.6)] active:scale-95"
+        className={`group fixed bottom-6 sm:bottom-8 right-4 sm:right-6 z-40 flex items-center justify-center gap-2 sm:gap-2.5 rounded-full bg-[#25D366] p-3.5 sm:px-4 sm:py-3.5 text-white shadow-[0_8px_25px_rgba(37,211,102,0.45)] transition-all duration-300 hover:scale-105 hover:bg-[#20bd5a] hover:shadow-[0_12px_30px_rgba(37,211,102,0.6)] active:scale-95 ${
+          hideWhatsApp
+            ? "opacity-0 pointer-events-none translate-y-8 scale-90"
+            : "opacity-100 pointer-events-auto translate-y-0 scale-100"
+        }`}
       >
         <div className="relative">
           <IconWhatsApp className="h-6 w-6" />

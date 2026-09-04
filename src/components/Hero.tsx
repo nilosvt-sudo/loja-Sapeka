@@ -169,6 +169,7 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
                 <img
                   src={IMG.calcados}
                   alt="Calçados"
+                  loading="lazy"
                   className="aspect-square w-full object-cover"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0.5 sm:bottom-1 text-center font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.12em] text-ink/60">
@@ -184,6 +185,7 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
                 <img
                   src={IMG.casa}
                   alt="Cama, mesa e banho"
+                  loading="lazy"
                   className="aspect-[4/3] w-full object-cover"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0.5 sm:bottom-1 text-center font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.12em] text-ink/60">

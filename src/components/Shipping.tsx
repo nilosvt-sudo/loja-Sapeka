@@ -188,6 +188,7 @@ export function Shipping() {
                   <img
                     src={t.avatar}
                     alt={t.name}
+                    loading="lazy"
                     className="h-10 w-10 rounded-full object-cover border-2 border-gold shrink-0 shadow-sm"
                   />
                   <div className="min-w-0">

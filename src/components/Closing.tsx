@@ -5,6 +5,7 @@ import {
   INSTAGRAM_URL,
   WHATSAPP_DISPLAY,
   WHATSAPP_NUMBER,
+  type DeptId,
 } from "../data";
 import {
   Barcode,
@@ -52,9 +53,9 @@ export function InstagramCTA() {
             </Reveal>
             <Reveal delay={160}>
               <p className="mt-6 max-w-md text-base leading-relaxed text-cream/70">
-                Peça pelo direct, receba fotos e medidas da peça, feche o
-                pedido e acompanhe o envio — tudo pelo Instagram, do jeito
-                simples que a gente sempre atendeu.
+                Peça pelo direct ou monte sua sacola no site e envie sua lista
+                para o WhatsApp. Receba fotos, tire dúvidas de caimento e acompanhe
+                o envio com rastreio — atendimento acolhedor como no balcão da loja.
               </p>
             </Reveal>
             <Reveal delay={240}>
@@ -123,7 +124,7 @@ export function InstagramCTA() {
   );
 }
 
-export function Footer() {
+export function Footer({ onExplore }: { onExplore?: (d: DeptId) => void }) {
   return (
     <footer className="relative overflow-hidden bg-pine-deep text-cream">
       <div className="mx-auto max-w-[1440px] px-4 pb-10 pt-16 sm:px-6 lg:px-8 xl:px-10">
@@ -134,6 +135,7 @@ export function Footer() {
               <img
                 src="/logo-sapeka.jpg"
                 alt="Logo Sapeka"
+                loading="lazy"
                 className="h-14 w-14 rounded-xl border border-cream/20 object-cover shadow-md"
               />
               <div>
@@ -167,7 +169,13 @@ export function Footer() {
               {DEPARTMENTS.map((d) => (
                 <li key={d.id}>
                   <a
-                    href="#departamentos"
+                    href={`#vitrine-${d.id}`}
+                    onClick={(e) => {
+                      if (onExplore) {
+                        e.preventDefault();
+                        onExplore(d.id);
+                      }
+                    }}
                     className="group flex items-center gap-2 text-[15px] text-cream/75 transition-colors hover:text-gold"
                   >
                     <span className="h-[2px] w-3 bg-gold/40 transition-all group-hover:w-5 group-hover:bg-gold" />

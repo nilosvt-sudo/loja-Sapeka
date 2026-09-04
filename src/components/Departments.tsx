@@ -221,6 +221,7 @@ export function Departments({ onExplore }: { onExplore: (d: DeptId) => void }) {
                 key={current.id}
                 src={current.img}
                 alt={`Modelo - Departamento ${current.name}`}
+                loading="lazy"
                 className="card-in h-full w-full object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent pointer-events-none" />
@@ -232,7 +233,7 @@ export function Departments({ onExplore }: { onExplore: (d: DeptId) => void }) {
           </div>
 
           {/* Barra de 5 Miniaturas Clicáveis Proporcionais em Largura Total */}
-          <div className="border-t border-ink/10 bg-cream/90 p-3 sm:p-5 backdrop-blur-sm">
+          <div id="barra-departamentos" className="border-t border-ink/10 bg-cream/90 p-3 sm:p-5 backdrop-blur-sm">
             {/* Grid 100% uniforme com as 5 miniaturas ocupando toda a largura */}
             <div className="grid grid-cols-5 gap-2 sm:gap-4 w-full">
               {DEPARTMENTS.map((d, i) => {
@@ -253,6 +254,7 @@ export function Departments({ onExplore }: { onExplore: (d: DeptId) => void }) {
                     <img
                       src={d.img}
                       alt={d.name}
+                      loading="lazy"
                       className="h-9 sm:h-16 w-full rounded-lg object-cover object-top"
                     />
                     <div className="flex flex-col items-center">

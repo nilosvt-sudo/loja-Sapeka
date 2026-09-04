@@ -1,8 +1,8 @@
 // ============================================================================
 // CONFIGURAÇÃO DE CONTATO OFICIAL DA LOJA SAPEKA
 // ============================================================================
-export const WHATSAPP_NUMBER = "553299640316";
-export const WHATSAPP_DISPLAY = "(32) 9964-0316";
+export const WHATSAPP_NUMBER = "5532999640316";
+export const WHATSAPP_DISPLAY = "(32) 99964-0316";
 
 export const INSTAGRAM_URL = "https://www.instagram.com/sapekaloja/";
 export const INSTAGRAM_HANDLE = "@sapekaloja";
@@ -23,24 +23,16 @@ export const DEPT_LABEL: Record<DeptId, string> = {
 };
 
 const IMG = {
-  hero: "https://image.qwenlm.ai/generated-images/1036f36e-989e-42e5-baeb-14194819e89f/_result.png",
-  feminino:
-    "https://image.qwenlm.ai/generated-images/701971cb-de43-4eec-897d-9959bcc65aad/_result.png",
-  masculino:
-    "https://image.qwenlm.ai/generated-images/a0d592db-8326-4fb3-a785-6820d66f16cc/_result.png",
-  infantil:
-    "https://image.qwenlm.ai/generated-images/49f5484a-66c2-4f56-92c9-e2c5883d8c1e/_result.png",
-  calcados:
-    "https://image.qwenlm.ai/generated-images/48c778df-cf60-4395-b49b-375c66d2713c/_result.png",
-  casa: "https://image.qwenlm.ai/generated-images/74933626-bbc9-473b-85e9-14e3d6289d9f/_result.png",
-  historia:
-    "https://image.qwenlm.ai/generated-images/d3575d5c-c0b4-47c7-a772-053e540663af/_result.png",
-  jeans:
-    "https://image.qwenlm.ai/generated-images/c002a04d-594a-41a5-82b8-490ecff68e34/_result.png",
-  bolsa:
-    "https://image.qwenlm.ai/generated-images/6e3a9bd5-6108-4fae-9fb5-5f941dcc3f08/_result.png",
-  kidsTenis:
-    "https://image.qwenlm.ai/generated-images/82dc7a2d-da9e-4181-a45d-9df21476b570/_result.png",
+  hero: "/images/hero.webp",
+  feminino: "/images/feminino.webp",
+  masculino: "/images/masculino.webp",
+  infantil: "/images/infantil.webp",
+  calcados: "/images/calcados.webp",
+  casa: "/images/casa.webp",
+  historia: "/images/historia.webp",
+  jeans: "/images/jeans.webp",
+  bolsa: "/images/bolsa.webp",
+  kidsTenis: "/images/kidsTenis.webp",
 };
 
 export { IMG };
@@ -112,7 +104,7 @@ export const PRODUCTS: Product[] = [
     price: 189.9,
     tag: "NOVO",
     img: IMG.feminino,
-    imgHover: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=700&auto=format&fit=crop&q=80",
+    imgHover: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=700&auto=format&fm=webp&fit=crop&q=80",
     sizes: ["P", "M", "G", "GG"],
     stockWarning: "🔥 Apenas 2 peças no Tam M",
   },
@@ -123,7 +115,7 @@ export const PRODUCTS: Product[] = [
     price: 159.9,
     tag: "NOVO",
     img: IMG.masculino,
-    imgHover: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=700&auto=format&fit=crop&q=80",
+    imgHover: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=700&auto=format&fm=webp&fit=crop&q=80",
     sizes: ["P", "M", "G", "GG", "XG"],
     stockWarning: "⚡ Últimas 3 unidades",
   },
@@ -135,7 +127,7 @@ export const PRODUCTS: Product[] = [
     oldPrice: 124.9,
     tag: "-20%",
     img: IMG.infantil,
-    imgHover: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700&auto=format&fit=crop&q=80",
+    imgHover: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700&auto=format&fm=webp&fit=crop&q=80",
     sizes: ["2", "4", "6", "8", "10", "12"],
     stockWarning: "🔥 Restam poucos conjuntos",
   },
@@ -145,7 +137,7 @@ export const PRODUCTS: Product[] = [
     dept: "calcados",
     price: 219.9,
     img: IMG.calcados,
-    imgHover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&auto=format&fit=crop&q=80",
+    imgHover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&auto=format&fm=webp&fit=crop&q=80",
     sizes: ["37", "38", "39", "40", "41", "42"],
     stockWarning: "⚡ Apenas 1 par Tam 41",
   },
@@ -156,7 +148,7 @@ export const PRODUCTS: Product[] = [
     price: 129.9,
     tag: "MAIS VENDIDO",
     img: IMG.casa,
-    imgHover: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=700&auto=format&fit=crop&q=80",
+    imgHover: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=700&auto=format&fm=webp&fit=crop&q=80",
     sizes: ["Único"],
   },
   {
@@ -165,7 +157,7 @@ export const PRODUCTS: Product[] = [
     dept: "feminino",
     price: 179.9,
     img: IMG.jeans,
-    imgHover: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=700&auto=format&fit=crop&q=80",
+    imgHover: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=700&auto=format&fm=webp&fit=crop&q=80",
     sizes: ["36", "38", "40", "42", "44"],
     stockWarning: "🔥 Últimas 2 peças no 38",
   },
@@ -177,7 +169,7 @@ export const PRODUCTS: Product[] = [
     oldPrice: 214.9,
     tag: "-30%",
     img: IMG.bolsa,
-    imgHover: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=700&auto=format&fit=crop&q=80",
+    imgHover: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=700&auto=format&fm=webp&fit=crop&q=80",
     sizes: ["Único"],
     stockWarning: "⚡ Quase esgotado na loja",
   },
@@ -188,7 +180,7 @@ export const PRODUCTS: Product[] = [
     price: 109.9,
     tag: "NOVO",
     img: IMG.kidsTenis,
-    imgHover: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=700&auto=format&fit=crop&q=80",
+    imgHover: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=700&auto=format&fm=webp&fit=crop&q=80",
     sizes: ["24", "26", "28", "30", "32"],
   },
 ];
@@ -295,7 +287,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Mariana Costa",
     place: "Fortaleza · CE",
     tilt: -1.5,
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fm=webp&fit=crop&q=80",
     bought: "Vestido Midi Floral (Tam: M)",
     rating: 5,
     verified: true,
@@ -306,7 +298,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Paula Rezende",
     place: "Belo Horizonte · MG",
     tilt: 1.2,
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fm=webp&fit=crop&q=80",
     bought: "Conjunto Kids & Tênis (Tam: 6)",
     rating: 5,
     verified: true,
@@ -317,7 +309,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Jorge Medeiros",
     place: "Curitiba · PR",
     tilt: 1.8,
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fm=webp&fit=crop&q=80",
     bought: "Tênis Urban Comfort (Tam: 41)",
     rating: 5,
     verified: true,
@@ -328,7 +320,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Cláudia & André",
     place: "Recife · PE",
     tilt: -1.2,
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fm=webp&fit=crop&q=80",
     bought: "Jogo de Toalhas & Lençóis 5 pçs",
     rating: 5,
     verified: true,
