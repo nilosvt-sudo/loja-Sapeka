@@ -102,7 +102,7 @@ export function Departments({ onExplore }: { onExplore: (d: DeptId) => void }) {
   };
 
   return (
-    <section id="departamentos" className="relative scroll-mt-24 bg-cream py-20 lg:py-28">
+    <section id="departamentos" className="relative scroll-mt-24 overflow-hidden w-full max-w-full bg-cream py-20 lg:py-28">
       <div className="dot-grid pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
       <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* header row */}
@@ -233,9 +233,9 @@ export function Departments({ onExplore }: { onExplore: (d: DeptId) => void }) {
           </div>
 
           {/* Barra de 5 Miniaturas Clicáveis Proporcionais em Largura Total */}
-          <div id="barra-departamentos" className="border-t border-ink/10 bg-cream/90 p-3 sm:p-5 backdrop-blur-sm">
+          <div id="barra-departamentos" className="border-t border-ink/10 bg-cream/90 p-2 sm:p-5 backdrop-blur-sm overflow-hidden w-full">
             {/* Grid 100% uniforme com as 5 miniaturas ocupando toda a largura */}
-            <div className="grid grid-cols-5 gap-2 sm:gap-4 w-full">
+            <div className="grid grid-cols-5 gap-1.5 sm:gap-4 w-full min-w-0">
               {DEPARTMENTS.map((d, i) => {
                 const isActive = activeIdx === i;
                 const displayName =
@@ -245,7 +245,7 @@ export function Departments({ onExplore }: { onExplore: (d: DeptId) => void }) {
                   <button
                     key={d.id}
                     onClick={() => setActiveIdx(i)}
-                    className={`group relative flex flex-col items-center gap-1.5 sm:gap-2 rounded-xl border p-1.5 sm:p-2.5 transition-all text-center ${
+                    className={`group relative flex flex-col items-center gap-1 sm:gap-2 rounded-xl border p-1 sm:p-2.5 transition-all text-center min-w-0 overflow-hidden w-full ${
                       isActive
                         ? "border-pine bg-paper shadow-md scale-[1.02] ring-2 ring-pine/25"
                         : "border-ink/10 bg-paper/60 opacity-70 hover:opacity-100 hover:border-pine/30 hover:bg-paper"

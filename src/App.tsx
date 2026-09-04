@@ -119,7 +119,7 @@ export default function App() {
   const totalQty = cart.reduce((s, i) => s + i.qty, 0);
 
   return (
-    <div className="grain min-h-screen bg-paper font-body text-ink antialiased">
+    <div className="grain min-h-screen w-full max-w-full overflow-x-clip bg-paper font-body text-ink antialiased">
       <Ticker />
       <Header
         count={totalQty}
@@ -128,7 +128,7 @@ export default function App() {
         onAdd={addToCart}
       />
 
-      <main>
+      <main className="w-full max-w-full overflow-x-clip">
         <Hero onExplore={explore} />
         <Departments onExplore={explore} />
         <Vitrine filter={filter} onFilter={setFilter} onAdd={addToCart} />

@@ -210,7 +210,7 @@ export function Hero({ onExplore }: { onExplore: (d: DeptId) => void }) {
       </div>
 
       {/* category marquee band */}
-      <div className="relative border-y border-cream/20 bg-pine-deep py-3.5">
+      <div className="relative w-full max-w-full overflow-hidden border-y border-cream/20 bg-pine-deep py-3.5">
         <div className="marquee-track" style={{ "--dur": "30s" } as CSSProperties}>
           <CatMarqueeRow />
           <CatMarqueeRow />

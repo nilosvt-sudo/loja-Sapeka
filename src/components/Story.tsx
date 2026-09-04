@@ -69,7 +69,7 @@ export function Story() {
   const { ref, inView } = useInView<HTMLDivElement>(0.2);
 
   return (
-    <section id="historia" className="relative scroll-mt-24 bg-pine text-cream">
+    <section id="historia" className="relative scroll-mt-24 overflow-hidden w-full max-w-full bg-pine text-cream">
       <div className="pinstripe-gold pointer-events-none absolute inset-0 opacity-80" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 lg:px-8 xl:px-10 lg:py-28">
@@ -119,7 +119,7 @@ export function Story() {
                     <span className="rounded bg-gold px-2 py-0.5 font-bold text-pine-deep shadow-sm">c. 1990</span>
                   </div>
                 </div>
-                <CircularStamp dark className="absolute -right-4 -top-7 h-20 w-20 drop-shadow-lg sm:-right-7 sm:h-24 sm:w-24" />
+                <CircularStamp dark className="absolute -right-2 sm:-right-7 -top-6 sm:-top-7 h-16 w-16 sm:h-24 sm:w-24 drop-shadow-lg" />
               </figure>
             </Reveal>
 
@@ -138,35 +138,33 @@ export function Story() {
             </div>
 
             {/* Citação institucional de fechamento */}
-            <Reveal delay={260}>
-              <div className="rounded-lg border-l-4 border-gold bg-pine-deep/60 px-4 py-3 text-xs italic leading-relaxed text-cream/90 font-display">
-                &ldquo;Do enxoval do bebê ao linho do avô — moda para a família inteira com o mesmo carinho de balcão.&rdquo;
+            <Reveal delay={240}>
+              <div className="rounded-xl border border-gold/30 bg-pine-deep/90 p-4 text-center sm:text-left">
+                <p className="font-display text-sm sm:text-base italic text-gold-soft">
+                  "O carinho no balcão que você já conhece, agora na palma da sua mão."
+                </p>
+                <span className="mt-1 block font-mono text-[9.5px] uppercase tracking-widest text-cream/60">
+                  Família Sapeka Multimarcas
+                </span>
               </div>
             </Reveal>
           </div>
 
-          {/* Coluna da Direita: Linha do Tempo Cronológica (Alto Contraste) */}
-          <div className="lg:col-span-7 lg:pl-6">
-            <Reveal delay={100}>
-              <div className="mb-8 rounded-xl border border-cream/20 bg-pine-deep/70 p-5 shadow-sm">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-gold">
-                  Linha do Tempo Oficial
-                </p>
-                <p className="mt-1 font-display text-2xl font-bold italic text-cream">
-                  A trajetória da Sapeka ao longo de 35 anos
-                </p>
-              </div>
+          {/* Coluna da Direita: Timeline de Marcos Históricos */}
+          <div className="lg:col-span-7">
+            <Reveal>
+              <h3 className="font-mono text-[11.5px] font-bold uppercase tracking-[0.24em] text-gold mb-6">
+                Nossa Trajetória
+              </h3>
             </Reveal>
 
-            <ol className="relative ml-3 border-l-2 border-dashed border-gold/60 pl-6 sm:ml-6 sm:pl-10">
+            <ol className="relative space-y-6 border-l-2 border-gold/40 pl-6 sm:pl-8">
               {MILESTONES.map((m, i) => (
-                <li key={m.year} className="relative pb-8 last:pb-2">
-                  {/* Ponto indicador com anel dourado */}
-                  <span
-                    className="absolute -left-[31px] top-4 h-4 w-4 rounded-full border-2 border-gold bg-cream shadow-[0_0_10px_rgba(245,158,11,0.8)] sm:-left-[47px]"
-                    aria-hidden="true"
-                  />
-                  <Reveal delay={i * 70}>
+                <li key={m.year} className="relative">
+                  <span className="absolute -left-[31px] sm:-left-[39px] top-1.5 flex h-4 w-4 sm:h-5 sm:w-5 items-center justify-center rounded-full border-2 border-gold bg-pine-deep text-gold">
+                    <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                  </span>
+                  <Reveal delay={i * 90}>
                     <div className="rounded-xl border border-ink/10 bg-cream p-5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-xl">
                       <div className="flex items-center justify-between gap-3">
                         <span className="inline-block rounded-md bg-pine px-3 py-1 font-mono text-xs font-bold uppercase tracking-[0.18em] text-white shadow-sm">
@@ -192,11 +190,11 @@ export function Story() {
       </div>
 
       {/* brands marquee */}
-      <div className="relative border-t border-cream/15 bg-pine-deep py-8">
+      <div className="relative w-full max-w-full overflow-hidden border-t border-cream/15 bg-pine-deep py-8">
         <p className="mb-4 text-center font-mono text-[10px] uppercase tracking-[0.32em] text-cream/45">
           Multimarcas que você confia
         </p>
-        <div className="overflow-hidden">
+        <div className="overflow-hidden w-full max-w-full">
           <BrandRow items={BRANDS_ROW_A} dur="36s" />
           <BrandRow items={BRANDS_ROW_B} reverse outline dur="44s" />
         </div>
